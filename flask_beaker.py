@@ -8,7 +8,7 @@
     :license: MIT, see LICENSE for more details.
 '''
 
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 try:
     from beaker.middleware import SessionMiddleware
 except ImportError, e:
@@ -19,7 +19,7 @@ from flask.sessions import SessionInterface
 
 class BeakerSessionInterface(SessionInterface):
     def open_session(self, app, request):
-        return request.environ.get('beaker.session')
+        return request.environ.get('beaker.session', None)
 
     def save_session(self, app, session, response):
         session.save()
